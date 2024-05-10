@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const db = require('./db.js');
+require('dotenv').config();
 
 // Adding Body Parser
 const bodyparser = require('body-parser');
@@ -14,7 +15,10 @@ app.get('/', function (req, res) {
 const PersonRoutes = require('./Routes/PersonRoutes.js');
 app.use('/', PersonRoutes);  // Use the Router
 
-app.listen(3000, () => {
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
   console.log(' Node Server Started');
 });
 

@@ -1,0 +1,54 @@
+SQL Terms/Concepts      MongoDB Terms/Concepts
+    database                   database
+    table                    collection
+    row                   document or BSON document
+    column                      field
+    index                       index
+
+Example Data -
+{
+  _id: ObjectId("509a8fb2f3f4948bd2f983a0"),
+  user_id: "abc123",
+  age: 55,
+  status: 'A'
+}
+
+SHOW DATABASES // show collections
+
+CREATE // To create Collection (Table)
+            db.createCollection("people")
+
+INSERT // Implicitly created on first insertOne() or insertMany() operation.
+    The primary key _id is automatically added if _id field is not specified.
+        db.people.insertOne( {
+            user_id: "abc123",
+            age: 55,
+            status: "A"
+        } )
+
+ADD COLUMN // At the document level, updateMany() operations can add fields to existing documents 
+        using the $set operator.
+        db.people.updateMany(
+            { },
+            { $set: { join_date: new Date() } }
+        )
+
+DROP TABLE // db.people.drop()
+
+For more information on the methods and operators used, see:
+
+        db.collection.insertOne()
+
+        db.collection.insertMany()
+
+        db.createCollection()
+
+        db.collection.updateMany()
+
+        db.collection.createIndex()
+
+        db.collection.drop()
+
+        $set
+
+        $unset

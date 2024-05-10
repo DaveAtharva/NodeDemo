@@ -1,0 +1,172 @@
+// To declare a variable there are 3 ways: var , let , const
+
+// Input from user - we need to add npm i prompt-sync
+
+// To run a file - node main.js (File name)
+
+// command - pwd (gives present working directory)
+
+// to change folder - cd <folder name>
+
+// To install express - npm i express
+
+// Different ways to create a function -
+    1.  function myFunction(param1, param2) {
+        // function body
+        }
+
+    2. const myFunction = function(param1, param2) {
+        // function body
+        };
+
+    3. const myObject = {
+        myFunction: function(param1, param2) {
+            // function body
+        }
+        };
+
+    4. // Define an arrow function
+        const myArrowFunction = (param1, param2) => {
+            return param1 + param2;
+        };
+
+    5. Call Back function -
+         const myArrowFunction = (param1, param2, callbackfunc) => {
+            return param1 + param2;
+            callbackfunc();
+        };
+
+// To call a library- 
+    var fs= require('fs');
+
+// TO EXPORT objects from current file to another file - 
+    const myObject = {
+        key1: 'value1',
+        key2: 'value2'
+    };
+
+    module.exports = myObject;
+
+    OR 
+    module.export.age=18;
+
+// To call a another file (for example min.js file) - 
+    const importedObject = require('./file1');
+
+    console.log(importedObject.key1); // Output: value1
+    console.log(importedObject.key2); // Output: value2
+
+// Lodash Library - for functions unique , filter, union ,isString
+    npm i Lodash
+    var _ = require('Lodash');
+
+// Creating a Node.js server -> (Made USing Express.js)
+    1. Make a file server.js
+    2. Need - LocalHost , Port Number(3000)
+        http://localhost:3000
+
+    3. install Express - npm i express
+    
+    4. copy the code-
+        const express = require('express')
+        const app = express()
+
+        app.get('/', function (req, res) {
+        res.send('Hello World')
+        // ypu can also return json objects
+        })
+
+        app.listen(3000)
+        or 
+        app.listen(3000,()=>{
+        console.log(' Server Started');
+        }); 
+    
+    5. Make all the endpoints (get , post, put ,delete)
+This server can be used via Postman or chrome.
+
+// Create a Database Server DB.js - (MongoDB)
+    1. Make a DB.js File
+    2. install Mongoose - npm i Mongoose
+    3. const mongoose = require('mongoose');
+       const mongodburl = 'mongodb://localhost:27017/Demo'; //(Demo)-> Name of Database
+    4. //Estalishing Connection
+        mongoose.connect(mongodburl,{
+            useNewUrlParser:true,
+            UseUnifiedTopology : true
+        })
+
+    5.  // This Object is used to make connection between Node And MongoDB
+        const db=mongoose.Connection;
+
+    6. db.on('connected',()=>{
+            console.log("Connected to MongoDB");
+        })
+
+    7. module.export=db;    
+       const db= require('./db.js'); -> in Server.js
+
+// Creating Models/ Schemas
+    1. Make Models - <SchemaName>.js File
+    add Mongoose require statement
+    const PersonSchema= new mongoose.Schema({
+    name : {
+        type: String ,
+        required : true
+    },
+    age : {
+        type : Number,
+        required : true
+        // ,
+        // enum:[10 , 15 , 20]
+        // unique : true,
+        // default :0
+
+        }
+    })
+
+        // Creating a Model/Schema 
+        const Person = mongoose.model('Person', PersonSchema);
+        module.exports=Person;
+
+    // Body Parser - Convert the data into desired format / handle the formating of data 
+        const bodyparser=require('body-parser');
+        app.use(bodyparser.json( ));
+
+// Istead of adding all endpoints in Server.js 
+    we can make a separte file Routes Folder and PersonRoutes.js file
+    Express Router helps in managing endpoint traffic
+
+    const express = require('express')
+    const router =express.Router();
+
+    Add PersonSchema in that file and 
+    shift all endpoints in new file and replace "app" with "router"
+
+    module.exports = router;
+    // Importing person Routes in server.js
+    const PersonRoutes = require('./Routes/PersonRoutes.js');
+    You can remove "Person" from each end point and
+    app.use('/person', PersonRoutes); in server.js
+
+
+// Git Commands
+
+1. **git init**: Initialize a new Git repository in the current directory.
+2. **git clone [repository URL]**: Clone a repository into a new directory.
+3. **git add [file]**: Add file(s) to the staging area.
+4. **git commit -m "[message]"**: Commit staged changes with a descriptive message.
+5. **git status**: Display the current state of the repository.
+6. **git branch**: List all branches in the repository.
+7. **git checkout [branch]**: Switch to the specified branch.
+8. **git merge [branch]**: Merge changes from the specified branch into the current branch.
+9. **git pull**: Fetch and merge changes from the remote repository.
+10. **git push**: Upload local changes to the remote repository.
+11. **git remote add [name] [URL]**: Add a new remote repository.
+12. **git log**: Display commit history.
+13. **git diff**: Show changes between commits, commit and working tree, etc.
+14. **git reset [file]**: Unstage file(s) from the staging area.
+15. **git stash**: Stash changes in the working directory for later use.
+
+// make a .gitignore file and add all files you dont want to commit
+  

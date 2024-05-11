@@ -13,7 +13,7 @@ router.post('/person', async (req, res) => {
 
         // Save the new data to MongoDB
         const response = await newPerson.save();
-
+        console.log('data Added');
         res.status(200).json({ message: 'Data added successfully' });
     } catch (error) {
         console.log(error);

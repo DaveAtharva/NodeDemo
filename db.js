@@ -2,8 +2,8 @@
 const mongoose = require('mongoose');
 require('dotenv').config(); 
 
-// const mongodburl = 'mongodb://localhost:27017/Demo'; //(Demo)-> Name of Database
-const mongodburl = 'mongodb+srv://Demo:12345@demo.zgajllv.mongodb.net/';
+const mongodburl = 'mongodb://0.0.0.0:27017/Demo'; //(Demo)-> Name of Database
+// const mongodburl = 'mongodb+srv://Demo:12345@cluster0.0gqnihh.mongodb.net/';
 
 // Estalishing Connection
 mongoose.connect(mongodburl);
@@ -23,5 +23,5 @@ db.on('disconnected', () => {
   console.log("Disconnected from MongoDB");
 });
 
-console.log('end');
+// console.log('end');
 module.export=db;

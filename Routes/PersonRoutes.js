@@ -8,12 +8,11 @@ const Person = require('./../Models/Person.js');
 router.post('/person', async (req, res) => {
     try {
         const data = req.body;
-
         const newPerson = new Person(data);
 
         // Save the new data to MongoDB
         const response = await newPerson.save();
-        console.log('data Added');
+        console.log('Data Added');
         res.status(200).json({ message: 'Data added successfully' });
     } catch (error) {
         console.log(error);
@@ -53,6 +52,7 @@ router.put('/person/:id', async (req, res) => {
     try {
         const person = await Person.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!person) {
+            console.log({Message:'Data Updated Succesfully'});
             return res.status(404).json({ message: 'Person not found' });
         }
         res.status(200).json(person);
@@ -69,6 +69,7 @@ router.delete('/person/:id', async (req, res) => {
         if (!person) {
             return res.status(404).json({ message: 'Person not found' });
         }
+        console.log({Message:'Data Deleted Succesfully'});
         res.status(204).json({ message: 'User Deleted Succesfully' });
     } catch (error) {
         console.error(error);
